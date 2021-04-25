@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FacebookCore
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -87,6 +88,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         //當場景從前景過渡到背景時調用。
         //使用此方法保存數據，釋放共享資源並存儲足夠的特定於場景的狀態信息
         //將場景恢復到當前狀態。
+    }
+    
+    // 在 openURL function 加入 FB 相關程式
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        guard let context = URLContexts.first else {return}
+        
+        ApplicationDelegate.shared.application(UIApplication.shared,
+                                               open: context.url,
+                                               sourceApplication: context.options.sourceApplication,
+                                               annotation: context.options.annotation)
     }
 
 

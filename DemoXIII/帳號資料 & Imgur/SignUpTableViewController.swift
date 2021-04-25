@@ -9,7 +9,7 @@ import UIKit
 import Foundation
 import PhotosUI
 
-//鍵盤return 跳下個textField
+//鍵盤return 跳下個textField 與 收鍵盤
 extension SignUpTableViewController:UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
@@ -87,7 +87,8 @@ class SignUpTableViewController: UITableViewController {
         accountTextField.delegate = self
         passwordTextField.delegate = self
         noteTextField.delegate = self
-
+        
+        self.tabBarController?.tabBar.isHidden = true
     }
     
     //使tableView可以收鍵盤

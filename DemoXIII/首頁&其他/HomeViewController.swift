@@ -9,9 +9,12 @@ import UIKit
 import AVKit
 import MediaPlayer
 import AVFoundation
+import Lottie
+
 
 class HomeViewController: UIViewController {
     
+    @IBOutlet weak var circleAnimationView: AnimationView!
     
     @IBOutlet var playerButtons: [UIButton]!
     @IBOutlet weak var playerSlider: UISlider!
@@ -64,6 +67,23 @@ class HomeViewController: UIViewController {
         
         //buttonsTouchUp(playerButtons[4])
         
+        self.tabBarController?.tabBar.isHidden = true//隱藏tab bar
+        
+        
+    }
+    
+    //Lottie動畫
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        //放到最下層
+        view.sendSubviewToBack(circleAnimationView)
+        circleAnimationView.loopMode = .loop
+        circleAnimationView.play()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        circleAnimationView.pause()
     }
     
     func playVideo() {
@@ -72,41 +92,47 @@ class HomeViewController: UIViewController {
         switchSong(arrayNumber: number)
         
         //觀察播放進度
-        queuePlayer.addPeriodicTimeObserver(forInterval: CMTime(value: 1, timescale: 1), queue: DispatchQueue.main) { [self] (CMTime) in
-            if queuePlayer.timeControlStatus == .playing{
-                playerButtons[2].setTitle("⏸", for: UIControl.State.normal)
+        queuePlayer.addPeriodicTimeObserver(forInterval: CMTime(value: 1, timescale: 1), queue: DispatchQueue.main) { [weak self] (CMTime) in
+            
+            guard let self = self else { return }
+            
+            if self.queuePlayer.timeControlStatus == .playing{
+                self.playerButtons[2].setTitle("⏸", for: UIControl.State.normal)
                 /*
                  可替換寫成
                  let currentTime = CMTimeGetSeconds(queuePlayer.currentTime())
                  */
-                let currentTime = Float64(queuePlayer.currentTime().seconds) //Float64 = Double
+                let currentTime = Float64(self.queuePlayer.currentTime().seconds) //Float64 = Double
                 
-                playerSlider.value = Float(currentTime)
+                self.playerSlider.value = Float(currentTime)
                 
-                minLabel.text = caculateTime(seconds: currentTime)
+                self.minLabel.text = self.caculateTime(seconds: currentTime)
             }else{
-                playerButtons[2].setTitle("▶️", for: UIControl.State.normal)
+                self.playerButtons[2].setTitle("▶️", for: UIControl.State.normal)
             }
+            
         }
         
         //歌曲播放完的通知與動作
-        NotificationCenter.default.addObserver(forName: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil, queue: .main) { [self] (Notification) in
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil, queue: .main) { [weak self] (Notification) in
+            guard let self = self else { return }
+            
             //通知中心默認加入一個觀察，觀察的事件為影片播畢時的動作
             
-            switch playerButtons[4].currentTitle {
+            switch self.playerButtons[4].currentTitle {
             case "🔂": //單曲循環，重複播放
-                queuePlayer.removeAllItems()
-                switchSong(arrayNumber: number)
-                playerLoop = AVPlayerLooper(player: queuePlayer, templateItem: playerItem!)
+                self.queuePlayer.removeAllItems()
+                self.switchSong(arrayNumber: self.number)
+                self.playerLoop = AVPlayerLooper(player: self.queuePlayer, templateItem: self.playerItem!)
             case "🔁": //結束就換下一首，循環輪播
-                playerLoop?.disableLooping()
-                if number < 3 {
-                    number += 1
+                self.playerLoop?.disableLooping()
+                if self.number < 3 {
+                    self.number += 1
                 }else{
-                    number = 0
+                    self.number = 0
                 }
-                queuePlayer.removeAllItems()
-                switchSong(arrayNumber: number)
+                self.queuePlayer.removeAllItems()
+                self.switchSong(arrayNumber: self.number)
             default:
                 break
             }
@@ -153,12 +179,14 @@ class HomeViewController: UIViewController {
     func makePlayerItem(playItemUrl:String) {
         let url = Bundle.main.url(forResource: playItemUrl, withExtension: "mp4")!
         
-        
-        
         playerItem = AVPlayerItem(url: url)
         
-        let duration = playerItem?.asset.duration //光碟的持續時間
-        let totalSeconds = CMTimeGetSeconds(duration!) //變成秒數
+        guard let duration = playerItem?.asset.duration else {
+            print("沒有光碟 playerItem")
+            return
+        }//光碟的持續時間
+        
+        let totalSeconds = CMTimeGetSeconds(duration) //變成秒數
         
         playerSlider.minimumValue = 0
         playerSlider.maximumValue = Float(totalSeconds)
@@ -235,7 +263,7 @@ class HomeViewController: UIViewController {
             }
             
             NotificationCenter.default.removeObserver(self.notification as Any) //先移除掉之前通知中心的觀察結果
-        
+            
         default:
             break
         }
@@ -405,6 +433,10 @@ class HomeViewController: UIViewController {
      */
     
     deinit {
+        
+        //queuePlayer.removeTimeObserver(notification)
+        //NotificationCenter.default.removeObserver(notification)
+        
         print("HomeViewController＿＿＿＿＿死亡")
     }
 }
@@ -440,5 +472,6 @@ extension HomeViewController: UICollectionViewDataSource {
 extension HomeViewController: UICollectionViewDelegate {
     
 }
+
 
 

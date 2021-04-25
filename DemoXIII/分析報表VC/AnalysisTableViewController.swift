@@ -7,14 +7,18 @@
 
 import UIKit
 import CoreData
+import Charts
 
 class AnalysisTableViewController: UITableViewController {
+    @IBOutlet weak var pieChartView: PieChartView!
+    
     @IBOutlet weak var incomeExpenseSegmentedControl: UISegmentedControl!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var dateSegmentedControl: UISegmentedControl!
     @IBOutlet var startDatePicker: UIDatePicker!
     @IBOutlet var endDatePicker: UIDatePicker!
     @IBOutlet weak var topView: UIView!
+    @IBOutlet weak var cashSurplusLabel: UILabel!
     
     var incomeListArray = [List]() //接收傳過來的 支出 選項清單
     var expenseListArray = [List]() //接收傳過來的 收入 選項清單
@@ -46,16 +50,6 @@ class AnalysisTableViewController: UITableViewController {
     
     //CoreData - Read 篩選並擷取資料
     func fetchFilteredData(format:NSPredicate? ) {
-        
-        //Date as CVarArg 意思是 要轉成NS格式
-        //fetchRequest.predicate = NSPredicate(format: <#T##String#>, <#T##args: CVarArg...##CVarArg#>)
-        // https://nspredicate.xyz/#contains-certain-string //NSPredicate 條件寫法的參考網址
-        // %@ 可代表 String Date
-        // %i 可代表 Int
-        //request.predicate = NSPredicate(format: "name CONTAINS %@", "homejay")//屬性 name 包含 字串，字串為homejay
-        //最多只能兩個比 再用 NSCompoundPredicate 接起來
-        
-        
         
         fetchRequest.predicate = format
         
@@ -172,7 +166,7 @@ class AnalysisTableViewController: UITableViewController {
             }
             
             dateLabel.text = makeDateString(date: date, dateFormat: "yyyy年MM月")
-            //incomeExpenseSegmentValueChange(incomeExpenseSegmentedControl)
+            
             
         case 1: //半年
             
@@ -244,7 +238,7 @@ class AnalysisTableViewController: UITableViewController {
             let start = makeDateString(date: sixMonthAgoDate, dateFormat: "yyyy年MM月")
             let end = makeDateString(date: date, dateFormat: "yyyy年MM月")
             dateLabel.text = "\(start)~\(end)"
-            //incomeExpenseSegmentValueChange(incomeExpenseSegmentedControl)
+            
             
         case 2: //今年
             
@@ -267,7 +261,7 @@ class AnalysisTableViewController: UITableViewController {
             }
             
             dateLabel.text = makeDateString(date: date, dateFormat: "yyyy年")
-            //incomeExpenseSegmentValueChange(incomeExpenseSegmentedControl)
+            
         default:
             
             makeDateToDateAlert()
@@ -275,6 +269,7 @@ class AnalysisTableViewController: UITableViewController {
         
         DispatchQueue.main.async {
             self.tableView.reloadData()
+            self.updatePieChartView(self.newListArray)
         }
     }
     
@@ -283,6 +278,7 @@ class AnalysisTableViewController: UITableViewController {
         
         dateSegmentValueChange(dateSegmentedControl)
         
+        adjustAttributesOfCashSurplusLabel()
     }
     
     //建立日期字串格式
@@ -327,7 +323,7 @@ class AnalysisTableViewController: UITableViewController {
             textField.text = self.endDateString
         }
         
-        //let okAction = UIAlertAction(title: "ok", style: .default, handler: nil)
+        
         let okAction = UIAlertAction(title: "ok", style: .default) { [self] (action) in
             if endDate >= starDate{
                 
@@ -352,7 +348,7 @@ class AnalysisTableViewController: UITableViewController {
                 let start = makeDateString(date: starDate, dateFormat: "yyyy年MM月dd日")
                 let end = makeDateString(date: endDate, dateFormat: "yyyy年MM月dd日")
                 dateLabel.text = "\(start)~\(end)"
-                //incomeExpenseSegmentValueChange(incomeExpenseSegmentedControl)
+                
                 
             }else{
                 print("起訖日有誤唷")
@@ -369,14 +365,136 @@ class AnalysisTableViewController: UITableViewController {
         present(alert, animated: true, completion: nil)
     }
     
+    func updatePieChartView(_ array:[List]) {
+        customizePieChart(array)
+        adjustAttributesOfPieChartView(pieChartView)
+        pieChartView.animate(xAxisDuration: 1) //圖表動畫，1秒內跑完 X軸動畫持續時間
+        
+    }
+    
+    func customizePieChart(_ array:[List]) {
+        //ChartDataEntry： 儲存每一筆資料
+        //ChartDataSet： 將使用每一筆資料(ChartDataEntry)，進行排列並呈現在畫面
+        //ChartData： 將呈現的結果(ChartDataSet)，作為圖表的資料依據
+        
+        //Step 1 設置存放資料的陣列 Set ChartDataEntry in Array
+        var pieChartDataArray = [ChartDataEntry]()
+        
+        array.forEach { list in
+            let pieChartData = PieChartDataEntry(value: Double(list.percent),
+                                                 label: list.title)
+            pieChartDataArray.append(pieChartData)
+        }
+        
+        //Step 2 設置每一筆資料呈現 Set ChartDataSet
+        let pieChartDataSet = PieChartDataSet(entries: pieChartDataArray,
+                                              label:nil)
+        
+        //Step 3 設置呈現顏色 Set ChartDataSet.colors
+        pieChartDataSet.colors = makeColorsOfCharts(numbersOfColor: array.count) //各個圓餅的顏色
+        
+        //Step 4 調整圓餅圖內的 數值字體大小、顏色 與 標籤字體大小、顏色
+        pieChartDataSet.valueFont = UIFont.boldSystemFont(ofSize: 15) //圓餅數值字體
+        pieChartDataSet.valueTextColor = UIColor.black //圓餅數值顏色
+    
+        pieChartDataSet.entryLabelFont = UIFont.boldSystemFont(ofSize: 15) //圓餅標籤字體
+        pieChartDataSet.entryLabelColor = UIColor.black //圓餅標籤顏色
+        
+        pieChartDataSet.drawValuesEnabled = false //不顯示 圓餅數值value
+        
+        pieChartDataSet.highlightColor = UIColor.red //被點選的圓餅顏色
+        pieChartDataSet.selectionShift = 10 //被點選的圓餅 與 原本的圓餅 距離，數值越大，原本的圓餅圖會被擠壓的越小
+        pieChartDataSet.sliceSpace = 2 // 餅圖切片之間的間隔（以像素為單位）默認值：0最大值：20
+        
+        //pieChartDataSet.valueLineColor = UIColor.blue //當valuePosition為OutsideSlice時，指示線條顏色
+        //pieChartDataSet.automaticallyDisableSliceSpacing = true //啟用後，如果最小值小於切片間隔本身，則切片間隔將為0.0。
+        //pieChartDataSet.useValueColorForLine = true //當valuePosition為OutsideSlice並啟用時，線將具有與切片相同的顏色
+        
+        //Step 5 設置圖表的資料依據 Set ChartData
+        let pieChartData = PieChartData(dataSet: pieChartDataSet)
+        
+        //Step 6
+        //let formatter = NumberFormatter()
+        //formatter.numberStyle = .none
+        //let defaultValueFormatter = DefaultValueFormatter(formatter: formatter)
+        //pieChartData.setValueFormatter(defaultValueFormatter)
+        
+        //Step 7 圖表呈現
+        pieChartView.data = pieChartData
+        
+    }
+    
+    //Step 3 建立隨機顏色陣列
+    func makeColorsOfCharts(numbersOfColor:Int) -> [UIColor] {
+        var colorArray = [UIColor]()
+        for _ in 0..<numbersOfColor {
+            let red = Double.random(in: 0...255)
+            let green = Double.random(in: 0...255)
+            let blue = Double.random(in: 0...255)
+            let color = UIColor(red: CGFloat(red/255),
+                                green: CGFloat(green/255),
+                                blue: CGFloat(blue/255),
+                                alpha: 1)
+            colorArray.append(color)
+        }
+        return colorArray
+    }
+    
+    //Step 8 調整屬性
+    func adjustAttributesOfPieChartView(_ pieChartView:PieChartView) {
+        pieChartView.legend.font = UIFont.boldSystemFont(ofSize: 12) //圖例文字大小
+        pieChartView.legend.textColor = UIColor.black //圖例 文字顏色
+        
+        pieChartView.legend.formSize = 20 //圖例大小
+        pieChartView.legend.formToTextSpace = 5 //圖例與文字 的間隔距離
+        pieChartView.legend.xEntrySpace = 10 //各個 圖例 的間隔距離
+        
+        pieChartView.legend.xOffset = 0 //整排圖例 往右移動，數值越大，幅度越大
+        pieChartView.legend.yOffset = 0 //整排圖例 往上移動，數值越大，幅度越大
+        
+        //pieChartView.legend.horizontalAlignment = .center //圖例 水平對齊
+        //pieChartView.legend.verticalAlignment = .center //圖例 垂直對齊
+        
+        //pieChartView.legend.enabled = false //隱藏 圖例
+        
+        pieChartView.drawEntryLabelsEnabled = false //不顯示 圓餅上的label
+    }
+    
+    func adjustAttributesOfCashSurplusLabel() {
+        cashSurplusLabel.frame = CGRect(x: 0, y: 0, width: 80, height: 50)
+        cashSurplusLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        cashSurplusLabel.textColor = .black
+        cashSurplusLabel.textAlignment = .center
+        cashSurplusLabel.numberOfLines = .zero
+        cashSurplusLabel.backgroundColor = UIColor.clear
+        
+        switch incomeExpenseSegmentedControl.selectedSegmentIndex {
+        case 0:
+            cashSurplusLabel.text = "總收入\n" + incomeTotal.description
+        default:
+            cashSurplusLabel.text = "總支出\n" + expenseTotal.description
+        }
+        
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         makeYearMonthDay(date)
         
-        dateSegmentValueChange(dateSegmentedControl)
+        incomeExpenseSegmentValueChange(incomeExpenseSegmentedControl)
         
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        //Step 9 動畫
+        pieChartView.animate(xAxisDuration: 1) //圖表動畫，1秒內跑完 X軸動畫持續時間
+        
+    }
+    
+    
 
     // MARK: - Table view data source
 
@@ -449,5 +567,8 @@ class AnalysisTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    deinit {
+        print("AnalysisTableViewController＿＿＿＿＿死亡")
+    }
 
 }

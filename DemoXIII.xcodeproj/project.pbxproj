@@ -7,11 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F6A9E15CDEF2DAC9809E08A /* Pods_DemoXIII.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CE0B9DF1290820970BA4295 /* Pods_DemoXIII.framework */; };
+		626771B526357FA700D580B3 /* circle.json in Resources */ = {isa = PBXBuildFile; fileRef = 626771B426357FA700D580B3 /* circle.json */; };
+		628BB7B9262FA97A00048377 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 628BB7B8262FA97A00048377 /* GoogleService-Info.plist */; };
+		628BB7FA263002DB00048377 /* FacebookLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628BB7F9263002DB00048377 /* FacebookLoginViewController.swift */; };
+		628BB7FC2630059E00048377 /* GoogleLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628BB7FB2630059E00048377 /* GoogleLoginViewController.swift */; };
+		628BB7FE2630062D00048377 /* FirebaseEmailLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628BB7FD2630062D00048377 /* FirebaseEmailLoginViewController.swift */; };
 		629C4E0126255DC80002C74A /* DateIncomeExpense.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 629C4DFF26255DC80002C74A /* DateIncomeExpense.xcdatamodeld */; };
 		629C4E5426273DCC0002C74A /* IncomeExpenseDate+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629C4E5226273DCC0002C74A /* IncomeExpenseDate+CoreDataClass.swift */; };
 		629C4E5526273DCC0002C74A /* IncomeExpenseDate+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629C4E5326273DCC0002C74A /* IncomeExpenseDate+CoreDataProperties.swift */; };
 		629C4E5A262749100002C74A /* AnalysisTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629C4E59262749100002C74A /* AnalysisTableViewCell.swift */; };
 		629C4E5C262749360002C74A /* AnalysisTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629C4E5B262749360002C74A /* AnalysisTableViewController.swift */; };
+		629C4EF4262F15870002C74A /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = 629C4EF3262F15870002C74A /* FacebookCore */; };
+		629C4EF6262F15870002C74A /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 629C4EF5262F15870002C74A /* FacebookLogin */; };
 		62D93480260C3B7300FA36B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D9347F260C3B7300FA36B5 /* AppDelegate.swift */; };
 		62D93487260C3B7300FA36B5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62D93485260C3B7300FA36B5 /* Main.storyboard */; };
 		62D93489260C3B7400FA36B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62D93488260C3B7400FA36B5 /* Assets.xcassets */; };
@@ -61,6 +69,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		626771B426357FA700D580B3 /* circle.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = circle.json; sourceTree = "<group>"; };
+		628BB7B8262FA97A00048377 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		628BB7F9263002DB00048377 /* FacebookLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookLoginViewController.swift; sourceTree = "<group>"; };
+		628BB7FB2630059E00048377 /* GoogleLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleLoginViewController.swift; sourceTree = "<group>"; };
+		628BB7FD2630062D00048377 /* FirebaseEmailLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseEmailLoginViewController.swift; sourceTree = "<group>"; };
 		629C4E0026255DC80002C74A /* DateIncomeExpense.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DateIncomeExpense.xcdatamodel; sourceTree = "<group>"; };
 		629C4E5226273DCC0002C74A /* IncomeExpenseDate+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IncomeExpenseDate+CoreDataClass.swift"; sourceTree = "<group>"; };
 		629C4E5326273DCC0002C74A /* IncomeExpenseDate+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IncomeExpenseDate+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -113,6 +126,9 @@
 		62D934F9260C3E7900FA36B5 /* AlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 		62D934FA260C3E7900FA36B5 /* NetworkController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
 		62D93501260C40D300FA36B5 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		84F0A113119A77354B72B068 /* Pods-DemoXIII.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DemoXIII.release.xcconfig"; path = "Target Support Files/Pods-DemoXIII/Pods-DemoXIII.release.xcconfig"; sourceTree = "<group>"; };
+		9CE0B9DF1290820970BA4295 /* Pods_DemoXIII.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DemoXIII.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D9D22549C248851CEF696654 /* Pods-DemoXIII.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DemoXIII.debug.xcconfig"; path = "Target Support Files/Pods-DemoXIII/Pods-DemoXIII.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,19 +136,33 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				629C4EF6262F15870002C74A /* FacebookLogin in Frameworks */,
 				62D93500260C3F1E00FA36B5 /* Alamofire in Frameworks */,
+				629C4EF4262F15870002C74A /* FacebookCore in Frameworks */,
+				4F6A9E15CDEF2DAC9809E08A /* Pods_DemoXIII.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A5A04D9A9C2926A652AB6E3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D9D22549C248851CEF696654 /* Pods-DemoXIII.debug.xcconfig */,
+				84F0A113119A77354B72B068 /* Pods-DemoXIII.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		628BA6A4261C52E100DE1A1C /* 首頁&其他 */ = {
 			isa = PBXGroup;
 			children = (
+				628BB7B8262FA97A00048377 /* GoogleService-Info.plist */,
 				62D934FA260C3E7900FA36B5 /* NetworkController.swift */,
 				62D934F9260C3E7900FA36B5 /* AlertController.swift */,
 				62D934F8260C3E7900FA36B5 /* HomeViewController.swift */,
+				626771B426357FA700D580B3 /* circle.json */,
 			);
 			path = "首頁&其他";
 			sourceTree = "<group>";
@@ -168,14 +198,14 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
-		629C4E562627423B0002C74A /* CoreDataModel */ = {
+		629C4E562627423B0002C74A /* Model-CoreData */ = {
 			isa = PBXGroup;
 			children = (
 				629C4E5226273DCC0002C74A /* IncomeExpenseDate+CoreDataClass.swift */,
 				629C4E5326273DCC0002C74A /* IncomeExpenseDate+CoreDataProperties.swift */,
 				629C4DFF26255DC80002C74A /* DateIncomeExpense.xcdatamodeld */,
 			);
-			name = CoreDataModel;
+			name = "Model-CoreData";
 			sourceTree = "<group>";
 		};
 		629C4E57262742BB0002C74A /* 輸入畫面VC */ = {
@@ -201,6 +231,8 @@
 			children = (
 				62D9347E260C3B7300FA36B5 /* DemoXIII */,
 				62D9347D260C3B7300FA36B5 /* Products */,
+				3A5A04D9A9C2926A652AB6E3 /* Pods */,
+				9AEFD6CDFE04B8B3885A7CCF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -240,7 +272,7 @@
 				629C4E58262742E20002C74A /* 輸入結果VC */,
 				62D934A4260C3CAE00FA36B5 /* 分析報表VC */,
 				628BA6A6261D6B5700DE1A1C /* Model */,
-				629C4E562627423B0002C74A /* CoreDataModel */,
+				629C4E562627423B0002C74A /* Model-CoreData */,
 			);
 			name = "記帳";
 			sourceTree = "<group>";
@@ -271,6 +303,9 @@
 			children = (
 				62D934AE260C3CF400FA36B5 /* LoginViewController.swift */,
 				62D934AD260C3CF400FA36B5 /* SignUpTableViewController.swift */,
+				628BB7F9263002DB00048377 /* FacebookLoginViewController.swift */,
+				628BB7FB2630059E00048377 /* GoogleLoginViewController.swift */,
+				628BB7FD2630062D00048377 /* FirebaseEmailLoginViewController.swift */,
 				628BA6A5261D6B1200DE1A1C /* Model */,
 			);
 			path = "帳號資料 & Imgur";
@@ -321,6 +356,14 @@
 			path = PlayerMusic;
 			sourceTree = "<group>";
 		};
+		9AEFD6CDFE04B8B3885A7CCF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9CE0B9DF1290820970BA4295 /* Pods_DemoXIII.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -328,9 +371,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 62D93490260C3B7400FA36B5 /* Build configuration list for PBXNativeTarget "DemoXIII" */;
 			buildPhases = (
+				66BBFE3A1FA3F098F2E672A8 /* [CP] Check Pods Manifest.lock */,
 				62D93478260C3B7300FA36B5 /* Sources */,
 				62D93479260C3B7300FA36B5 /* Frameworks */,
 				62D9347A260C3B7300FA36B5 /* Resources */,
+				9BFC2D6C0BEF6A4665F99973 /* [CP] Embed Pods Frameworks */,
+				58632D9F81041726EFA7F25B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -339,6 +385,8 @@
 			name = DemoXIII;
 			packageProductDependencies = (
 				62D934FF260C3F1E00FA36B5 /* Alamofire */,
+				629C4EF3262F15870002C74A /* FacebookCore */,
+				629C4EF5262F15870002C74A /* FacebookLogin */,
 			);
 			productName = DemoXIII;
 			productReference = 62D9347C260C3B7300FA36B5 /* DemoXIII.app */;
@@ -369,6 +417,7 @@
 			mainGroup = 62D93473260C3B7300FA36B5;
 			packageReferences = (
 				62D934FE260C3F1E00FA36B5 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				629C4EF2262F15870002C74A /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
 			);
 			productRefGroup = 62D9347D260C3B7300FA36B5 /* Products */;
 			projectDirPath = "";
@@ -391,15 +440,76 @@
 				62D934F1260C3E4300FA36B5 /* 神之塔.mp4 in Resources */,
 				62D934F5260C3E4300FA36B5 /* 聲嘶力竭.mp4 in Resources */,
 				62D934F0260C3E4300FA36B5 /* PekoraBGM.mp4 in Resources */,
+				628BB7B9262FA97A00048377 /* GoogleService-Info.plist in Resources */,
 				62D934BD260C3D2300FA36B5 /* GalleryEffectCollectionViewCell.xib in Resources */,
 				62D93489260C3B7400FA36B5 /* Assets.xcassets in Resources */,
 				62D934F2260C3E4300FA36B5 /* MarineBGM.mp4 in Resources */,
+				626771B526357FA700D580B3 /* circle.json in Resources */,
 				62D934F7260C3E4300FA36B5 /* 紅蓮華.mp4 in Resources */,
 				62D93487260C3B7300FA36B5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		58632D9F81041726EFA7F25B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DemoXIII/Pods-DemoXIII-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DemoXIII/Pods-DemoXIII-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DemoXIII/Pods-DemoXIII-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		66BBFE3A1FA3F098F2E672A8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DemoXIII-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9BFC2D6C0BEF6A4665F99973 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DemoXIII/Pods-DemoXIII-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DemoXIII/Pods-DemoXIII-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DemoXIII/Pods-DemoXIII-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		62D93478260C3B7300FA36B5 /* Sources */ = {
@@ -408,6 +518,7 @@
 			files = (
 				62D934CE260C3D8800FA36B5 /* EditCollectionReusableView.swift in Sources */,
 				62D934E1260C3DC600FA36B5 /* Channel.swift in Sources */,
+				628BB7FA263002DB00048377 /* FacebookLoginViewController.swift in Sources */,
 				62D934FB260C3E7A00FA36B5 /* HomeViewController.swift in Sources */,
 				629C4E5C262749360002C74A /* AnalysisTableViewController.swift in Sources */,
 				62D934BC260C3D2300FA36B5 /* GalleryEffectCollectionViewFlowLayout.swift in Sources */,
@@ -420,6 +531,7 @@
 				62D934C5260C3D5900FA36B5 /* ItemListCollectionViewController.swift in Sources */,
 				62D934DB260C3DC600FA36B5 /* PlayListCollectionViewController.swift in Sources */,
 				62D934FD260C3E7A00FA36B5 /* NetworkController.swift in Sources */,
+				628BB7FE2630062D00048377 /* FirebaseEmailLoginViewController.swift in Sources */,
 				62D934D0260C3D8800FA36B5 /* EditCollectionViewCell.swift in Sources */,
 				62D934FC260C3E7A00FA36B5 /* AlertController.swift in Sources */,
 				629C4E5526273DCC0002C74A /* IncomeExpenseDate+CoreDataProperties.swift in Sources */,
@@ -436,6 +548,7 @@
 				62D934BE260C3D2300FA36B5 /* GalleryEffectCollectionViewCell.swift in Sources */,
 				62D934A0260C3C6B00FA36B5 /* ResultTableViewController.swift in Sources */,
 				62D9349F260C3C6B00FA36B5 /* ResultTableViewCell.swift in Sources */,
+				628BB7FC2630059E00048377 /* GoogleLoginViewController.swift in Sources */,
 				62D934DC260C3DC600FA36B5 /* Profile_Twitter.swift in Sources */,
 				62D934A1260C3C6B00FA36B5 /* IncomeExpenseRecord.swift in Sources */,
 				62D934B4260C3CF500FA36B5 /* InfoResponse.swift in Sources */,
@@ -587,6 +700,7 @@
 		};
 		62D93491260C3B7400FA36B5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D9D22549C248851CEF696654 /* Pods-DemoXIII.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -607,6 +721,7 @@
 		};
 		62D93492260C3B7400FA36B5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 84F0A113119A77354B72B068 /* Pods-DemoXIII.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -649,6 +764,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		629C4EF2262F15870002C74A /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/facebook/facebook-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.2.0;
+			};
+		};
 		62D934FE260C3F1E00FA36B5 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire";
@@ -660,6 +783,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		629C4EF3262F15870002C74A /* FacebookCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 629C4EF2262F15870002C74A /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookCore;
+		};
+		629C4EF5262F15870002C74A /* FacebookLogin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 629C4EF2262F15870002C74A /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookLogin;
+		};
 		62D934FF260C3F1E00FA36B5 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 62D934FE260C3F1E00FA36B5 /* XCRemoteSwiftPackageReference "Alamofire" */;

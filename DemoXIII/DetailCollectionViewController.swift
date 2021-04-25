@@ -512,6 +512,25 @@ class DetailCollectionViewController: UICollectionViewController {
         
         inputComplete()
         
+        let yesNoAlert = UIAlertController(title: "已新增一筆資料", message: "需要再建一筆嗎？", preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "再一筆", style: .default, handler: nil)
+        
+        yesNoAlert.addAction(okAction)
+        
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel) { alertAction in
+            
+            /*
+            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+            guard let resultTableVC = storyboard.instantiateViewController(identifier: "ResultTableViewController") as? ResultTableViewController else { return }
+            
+            self.navigationController?.pushViewController(resultTableVC, animated: true)
+            */
+        }
+        
+        yesNoAlert.addAction(cancelAction)
+
+       present(yesNoAlert, animated: true, completion: nil)
     }
     
     //清空
@@ -525,7 +544,7 @@ class DetailCollectionViewController: UICollectionViewController {
     //傳資料to ResultTableVC & 存檔
     @IBSegueAction func passCaculateResult(_ coder: NSCoder, sender: Any?, segueIdentifier: String?) -> ResultTableViewController? {
         
-        inputComplete()
+        //inputComplete()
         
         let resultTableVC = ResultTableViewController(coder: coder)
         

@@ -5,18 +5,56 @@
 //  Created by homejay on 2021/3/25.
 //
 
+//希望 App 一啟動就能完成 FB 的相關設定，並且處理 FB 功能觸發的 App 切換，比方處理從 FB 或 Safari App 切換回 App 時回傳的資料。
+
 import UIKit
 import CoreData
+import FacebookCore //加入 FacebookCore 後才能使用 FB 的相關程式。
+import Firebase
+import GoogleSignIn
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
-
+    //在 App 啟動時完成 FB 的相關設定，因此在 application(_:didFinishLaunchingWithOptions:) 裡執行，ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)。
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        ApplicationDelegate.shared.application(application,
+                                               didFinishLaunchingWithOptions: launchOptions)
+        
+        FirebaseApp.configure()
+        
+        //google登入
+        //在您的應用程序委託的application:didFinishLaunchingWithOptions:方法中，配置FirebaseApp對象並設置登錄委託。
+        
         return true
     }
+    
+    
+    //如果有切換到 FB App，再從 FB App 切換回我們的 App 時會呼叫 application(_:open:options:)，故在裡面執行 ApplicationDelegate.shared 的 application(_:open: url:sourceApplication: annotation:)。
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        
+        ApplicationDelegate.shared.application(app,
+                                               open: url,
+                                               sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
+                                               annotation:options[UIApplication.OpenURLOptionsKey.annotation])
+        ||
+            
+        //該方法應調用GIDSignIn實例的handleURL方法，該實例將正確處理你的應用程序在身份驗證過程結束時收到的URL。
+         GIDSignIn.sharedInstance().handle(url)
+        
+    }
+    
+    
+    //為了使你的應用程序可以在iOS 8及更高版本上運行，還應實現不建議使用的application:openURL:sourceApplication:annotation:方法。
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        return GIDSignIn.sharedInstance().handle(url)
+    }
+    
+    
+    
+    
 
     // MARK: UISceneSession Lifecycle
 

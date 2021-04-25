@@ -7,9 +7,8 @@
 
 import UIKit
 
-//尚未完成
-
 class LoginViewController: UIViewController {
+
 
     @IBOutlet weak var accountTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -26,20 +25,53 @@ class LoginViewController: UIViewController {
             
             case let .success(infoResponse):
                 self.recordArray = infoResponse.records
-                print("成功")
+                print("fetchAirtableAPI 成功")
             case let .failure(error):
-                print("失敗\(error)")
+                print("fetchAirtableAPI 失敗\(error)")
             }
         }
         
+        accountTextField.delegate = self
+        passwordTextField.delegate = self
+        
+        
+        //移除tabBar 上邊線top line
+        self.tabBarController?.tabBar.layer.borderWidth = 0
+        self.tabBarController?.tabBar.clipsToBounds = true
+        
+        //插入漸層圖
+        view.insertSubview(makeGradientView(), at: 0)
+
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        //隱藏navigationBar
+        self.navigationController?.navigationBar.isHidden = true
+        
+        //更改tabBar的顏色
+        self.tabBarController?.tabBar.barTintColor = UIColor(red: 52/255, green: 168/255, blue: 83/255, alpha: 1)
+    }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.tabBarController?.tabBar.isHidden = false //解除 tab bar 隱藏
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        //重新顯示 navigationBar
+        self.navigationController?.navigationBar.isHidden = false
+        
+    }
+    
+    //Airtable login
     @IBAction func login(_ sender: Any) {
         if let accountText = accountTextField.text,
            let passwordText = passwordTextField.text {
 
-            performSegue(withIdentifier: "loginToHomePage", sender: sender)
             for index in recordArray {
                 
                 
@@ -67,18 +99,48 @@ class LoginViewController: UIViewController {
         
         present(singleAlert, animated: true, completion: nil)
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
+    func makeGradientView() -> UIView {
+        let gradientView = UIView()
+        gradientView.frame = view.bounds
+        
+        let gradienLayer = CAGradientLayer()
+        
+        gradienLayer.frame = gradientView.bounds
+        
+        gradienLayer.colors = [
+            UIColor(red: 136/255, green: 219/255, blue: 183/255, alpha: 1).cgColor,
+            UIColor(red: 52/255, green: 168/255, blue: 83/255, alpha: 1).cgColor,
+        ]
+
+        gradientView.layer.addSublayer(gradienLayer)
+        
+        return gradientView
+    }
+    
+    //收鍵盤(點螢幕空白處)
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+
     deinit {
         print("LoginViewController＿＿＿＿＿死亡")
     }
 }
+
+//收鍵盤(點return) ＆ 跳下一個textField
+extension LoginViewController:UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField {
+        case accountTextField:
+            passwordTextField.becomeFirstResponder()
+        case passwordTextField:
+            textField.endEditing(true)
+        default:
+            break
+        }
+        return true
+    }
+}
+
+

@@ -286,12 +286,13 @@ class ResultTableViewController: UITableViewController {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy/MM/dd"
         
-        let dateString = formatter.string(from: dateIncomeExpenseArray[section].date!)
+        //let dateString = formatter.string(from: dateIncomeExpenseArray[section].date!)
         //return dateString
         
         return fetchedResultsController?.sections?[section].name
     }
     
+    /*
     //傳資料到下一頁 ReportTableViewController
     @IBSegueAction func analyze(_ coder: NSCoder, sender: Any?, segueIdentifier: String?) -> ReportTableViewController? {
         let reportTableVC =  ReportTableViewController(coder: coder)
@@ -304,6 +305,7 @@ class ResultTableViewController: UITableViewController {
         
         return reportTableVC
     }
+    */
     
     //傳資料到下一頁 AnalysisTableViewController
     @IBSegueAction func passListsToAnalyssTVC(_ coder: NSCoder) -> AnalysisTableViewController? {
@@ -355,7 +357,7 @@ class ResultTableViewController: UITableViewController {
         
         print("執行numberOfRowsInSection，section為\(section)")
         
-        let rows = dateIncomeExpenseArray[section].incomeExpense.count
+        //let rows = dateIncomeExpenseArray[section].incomeExpense.count
         
         //return rows
         
