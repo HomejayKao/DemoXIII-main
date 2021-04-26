@@ -764,7 +764,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Az1-1v-zbE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="ekQ-5T-BwC" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="5022" y="2954"/>
+            <point key="canvasLocation" x="5170" y="2954"/>
         </scene>
         <!--Airtable-->
         <scene sceneID="dM6-Uj-0cd">
@@ -1067,28 +1067,24 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="AQw-yB-kne">
-                                <rect key="frame" x="19" y="438.5" width="376" height="30"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="AQw-yB-kne">
+                                <rect key="frame" x="10" y="438.5" width="394" height="30"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="min" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fKw-TR-sWw">
-                                        <rect key="frame" x="0.0" y="0.0" width="28" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="24" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="2lF-EA-TYB">
-                                        <rect key="frame" x="34" y="0.0" width="304" height="31"/>
+                                        <rect key="frame" x="30" y="0.0" width="326" height="31"/>
                                         <color key="tintColor" systemColor="systemRedColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="PV1-O6-As2"/>
-                                            <constraint firstAttribute="width" constant="300" id="UKF-vt-eLI"/>
-                                        </constraints>
                                         <connections>
                                             <action selector="sliderChange:" destination="2di-hh-bPv" eventType="valueChanged" id="iva-OT-RNt"/>
                                         </connections>
                                     </slider>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="max" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mxc-Yf-VtC">
-                                        <rect key="frame" x="344" y="0.0" width="32" height="30"/>
+                                        <rect key="frame" x="362" y="0.0" width="32" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -1169,7 +1165,9 @@
                             <constraint firstItem="lMC-YP-Y62" firstAttribute="centerX" secondItem="d6h-Qe-rYU" secondAttribute="centerX" id="Hxt-rR-5zt"/>
                             <constraint firstItem="c4V-jk-vrr" firstAttribute="bottom" secondItem="do7-3E-5v0" secondAttribute="bottom" constant="100.5" id="IIp-lB-3AI"/>
                             <constraint firstItem="SzF-de-k48" firstAttribute="centerX" secondItem="d6h-Qe-rYU" secondAttribute="centerX" id="JJe-Yd-Elv"/>
+                            <constraint firstItem="AQw-yB-kne" firstAttribute="leading" secondItem="c4V-jk-vrr" secondAttribute="leading" constant="10" id="T8d-fV-YSv"/>
                             <constraint firstItem="SzF-de-k48" firstAttribute="centerY" secondItem="do7-3E-5v0" secondAttribute="centerY" id="Xtr-mq-tuz"/>
+                            <constraint firstItem="c4V-jk-vrr" firstAttribute="trailing" secondItem="AQw-yB-kne" secondAttribute="trailing" constant="10" id="c0j-Eh-cqW"/>
                             <constraint firstItem="lMC-YP-Y62" firstAttribute="top" secondItem="AQw-yB-kne" secondAttribute="bottom" constant="20" id="dRT-Ne-qYr"/>
                             <constraint firstItem="isy-qa-DrS" firstAttribute="bottom" secondItem="c4V-jk-vrr" secondAttribute="bottom" id="gos-DT-2va"/>
                             <constraint firstItem="isy-qa-DrS" firstAttribute="top" secondItem="c4V-jk-vrr" secondAttribute="top" id="lEr-OX-6fc"/>
