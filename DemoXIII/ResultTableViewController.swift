@@ -96,7 +96,7 @@ class ResultTableViewController: UITableViewController {
         
         var incomeTotal = 0 //總收入
         var expenseTotal = 0 //總支出
-        var resultTotal = 0 //收支總和
+        //var resultTotal = 0 //收支總和
         
         /*
         //將每個日期的收支 進行計算
@@ -148,8 +148,7 @@ class ResultTableViewController: UITableViewController {
                 incomeTotal += Int(money)
             case false:
                 expenseTotal += Int(money)
-            default:
-                break
+                
             }
         })
         

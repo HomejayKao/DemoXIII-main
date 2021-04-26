@@ -40,6 +40,7 @@ class GoogleLoginViewController: UIViewController {
         
         //隱藏navigationBar
         self.navigationController?.navigationBar.isHidden = true
+        self.navigationController?.navigationBar.alpha = 0
         
         //更改tabBar的顏色
         self.tabBarController?.tabBar.barTintColor = UIColor(red: 255/255, green: 113/255, blue: 124/255, alpha: 1)
@@ -48,15 +49,13 @@ class GoogleLoginViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        self.tabBarController?.tabBar.isHidden = false //解除 tab bar 隱藏
+        //重新顯示 tabBar
+        UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 1, delay: 0, animations: {
+            self.tabBarController?.tabBar.isHidden = false
+            self.tabBarController?.tabBar.alpha = 1
+        }, completion: nil)
     }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        //重新顯示 navigationBar
-        self.navigationController?.navigationBar.isHidden = false
-        
-    }
+
     
     @IBAction func googleSignInTaped(_ sender: Any) {
         

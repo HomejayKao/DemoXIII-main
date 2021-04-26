@@ -35,6 +35,7 @@ class FacebookLoginViewController: UIViewController {
         
         //隱藏navigationBar
         self.navigationController?.navigationBar.isHidden = true
+        self.navigationController?.navigationBar.alpha = 0
         
         //更改tabBar的顏色
         self.tabBarController?.tabBar.barTintColor = UIColor(red: 59/255, green: 89/255, blue: 153/255, alpha: 1)
@@ -43,13 +44,11 @@ class FacebookLoginViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        self.tabBarController?.tabBar.isHidden = false //解除 tab bar 隱藏
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        //重新顯示 navigationBar
-        self.navigationController?.navigationBar.isHidden = false
+        //重新顯示 tabBar
+        UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 1, delay: 0, animations: {
+            self.tabBarController?.tabBar.isHidden = false
+            self.tabBarController?.tabBar.alpha = 1
+        }, completion: nil)
         
     }
     
@@ -174,10 +173,11 @@ extension FacebookLoginViewController:LoginButtonDelegate {
                 print("\(user.providerID) login")
                 if user.providerData.count > 0 {
                     
+                    
                     print(user.providerData[0].providerID)
-                    print(user.providerData[0].displayName)
-                    print(user.providerData[0].email)
-                    print(user.providerData[0].photoURL)
+                    print(user.providerData[0].displayName!)
+                    print(user.providerData[0].email!)
+                    print(user.providerData[0].photoURL!)
                     
                 }
             } else {

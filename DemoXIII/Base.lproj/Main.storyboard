@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Facebook Login View Controller-->
+        <!--Facebook-->
         <scene sceneID="QEE-7X-nAx">
             <objects>
                 <viewController id="KFN-Pz-Q3o" customClass="FacebookLoginViewController" customModule="DemoXIII" customModuleProvider="target" sceneMemberID="viewController">
@@ -29,7 +29,7 @@
                                     <segue destination="2di-hh-bPv" kind="show" identifier="loginToHomePageWithFacebook" id="qpl-Aa-cC7"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dty-l7-cpx">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dty-l7-cpx">
                                 <rect key="frame" x="132" y="373" width="150" height="150"/>
                                 <color key="backgroundColor" red="0.23137254901960785" green="0.34901960784313724" blue="0.59215686274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -72,7 +72,7 @@
                             <constraint firstItem="dty-l7-cpx" firstAttribute="top" secondItem="h5p-mR-2Eh" secondAttribute="bottom" constant="30" id="w1b-en-Wt0"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="sl9-3I-TtS"/>
+                    <navigationItem key="navigationItem" title="Facebook" id="sl9-3I-TtS"/>
                     <connections>
                         <outlet property="facebookLoginTapGesture" destination="XkU-Ui-ofL" id="JsP-K8-C2F"/>
                         <outlet property="goToTheNextButton" destination="lx0-1d-y8k" id="UVP-ZI-Nz6"/>
@@ -513,7 +513,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2816" y="-471"/>
+            <point key="canvasLocation" x="1533" y="-498"/>
         </scene>
         <!--清單-->
         <scene sceneID="UQD-Rv-hXE">
@@ -852,6 +852,9 @@
                                         <integer key="value" value="75"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="login:" destination="8sg-Ld-6Z8" eventType="touchUpInside" id="1Q2-qA-DPJ"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="4kH-uK-yEp"/>
@@ -997,6 +1000,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SzF-de-k48" customClass="AnimationView" customModule="Lottie">
+                                <rect key="frame" x="132" y="607.5" width="150" height="150"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="UXj-QI-4l4"/>
+                                    <constraint firstAttribute="height" constant="150" id="wzk-hA-4Ta"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="circle"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="do7-3E-5v0">
                                 <rect key="frame" x="177" y="652" width="60" height="61.5"/>
                                 <constraints>
@@ -1136,17 +1150,15 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wSU-Pf-Ewq" customClass="AnimationView" customModule="Lottie">
-                                <rect key="frame" x="132" y="607.5" width="150" height="150"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="isy-qa-DrS">
+                                <rect key="frame" x="174" y="88" width="240" height="725"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="150" id="86W-cc-3vC"/>
-                                    <constraint firstAttribute="width" constant="150" id="cSb-3Y-AuB"/>
+                                    <constraint firstAttribute="width" constant="240" id="hWd-6f-HNI"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="circle"/>
-                                </userDefinedRuntimeAttributes>
-                            </view>
+                                <connections>
+                                    <segue destination="6uU-12-9AS" kind="embed" id="Ebn-SC-5P8"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="c4V-jk-vrr"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1156,26 +1168,31 @@
                             <constraint firstItem="do7-3E-5v0" firstAttribute="centerX" secondItem="d6h-Qe-rYU" secondAttribute="centerX" id="8ED-Pc-iNU"/>
                             <constraint firstItem="lMC-YP-Y62" firstAttribute="centerX" secondItem="d6h-Qe-rYU" secondAttribute="centerX" id="Hxt-rR-5zt"/>
                             <constraint firstItem="c4V-jk-vrr" firstAttribute="bottom" secondItem="do7-3E-5v0" secondAttribute="bottom" constant="100.5" id="IIp-lB-3AI"/>
-                            <constraint firstItem="wSU-Pf-Ewq" firstAttribute="centerY" secondItem="do7-3E-5v0" secondAttribute="centerY" id="VJ6-0r-fsH"/>
+                            <constraint firstItem="SzF-de-k48" firstAttribute="centerX" secondItem="d6h-Qe-rYU" secondAttribute="centerX" id="JJe-Yd-Elv"/>
+                            <constraint firstItem="SzF-de-k48" firstAttribute="centerY" secondItem="do7-3E-5v0" secondAttribute="centerY" id="Xtr-mq-tuz"/>
                             <constraint firstItem="lMC-YP-Y62" firstAttribute="top" secondItem="AQw-yB-kne" secondAttribute="bottom" constant="20" id="dRT-Ne-qYr"/>
-                            <constraint firstItem="wSU-Pf-Ewq" firstAttribute="centerX" secondItem="c4V-jk-vrr" secondAttribute="centerX" id="tEb-h1-qrr"/>
+                            <constraint firstItem="isy-qa-DrS" firstAttribute="bottom" secondItem="c4V-jk-vrr" secondAttribute="bottom" id="gos-DT-2va"/>
+                            <constraint firstItem="isy-qa-DrS" firstAttribute="top" secondItem="c4V-jk-vrr" secondAttribute="top" id="lEr-OX-6fc"/>
+                            <constraint firstAttribute="trailing" secondItem="isy-qa-DrS" secondAttribute="trailing" id="uJ7-QT-dW0"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="首頁" id="pFo-Ad-ZkT">
-                        <barButtonItem key="rightBarButtonItem" title="上傳資料" image="person.circle.fill" catalog="system" id="BJK-2I-5Bb">
+                        <barButtonItem key="rightBarButtonItem" title="上傳資料" image="list.bullet" catalog="system" id="BJK-2I-5Bb">
                             <color key="tintColor" systemColor="labelColor"/>
                             <connections>
-                                <segue destination="mLd-Mg-nAq" kind="show" id="L9w-YB-6na"/>
+                                <action selector="openSideMenu:" destination="2di-hh-bPv" id="ykm-3l-0sx"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="amongUsImageView" destination="5Sk-Fo-kJd" id="b9m-Ab-9Jb"/>
-                        <outlet property="circleAnimationView" destination="wSU-Pf-Ewq" id="74c-uo-o7x"/>
+                        <outlet property="circleAnimationView" destination="SzF-de-k48" id="bpU-YC-Ogd"/>
+                        <outlet property="containerView" destination="isy-qa-DrS" id="QvQ-8d-du1"/>
                         <outlet property="homeCollectionView" destination="5Sk-Fo-kJd" id="CAN-tm-WRX"/>
                         <outlet property="maxLabel" destination="mxc-Yf-VtC" id="8QA-y3-D62"/>
                         <outlet property="minLabel" destination="fKw-TR-sWw" id="nMd-uH-pGs"/>
                         <outlet property="playerSlider" destination="2lF-EA-TYB" id="myQ-Hy-7mg"/>
+                        <outlet property="trailingConstraint" destination="uJ7-QT-dW0" id="91y-xE-STG"/>
                         <outletCollection property="playerButtons" destination="kXQ-MD-96K" collectionClass="NSMutableArray" id="Wvp-PY-PGm"/>
                         <outletCollection property="playerButtons" destination="DXc-ZU-hmw" collectionClass="NSMutableArray" id="bEb-46-Ezr"/>
                         <outletCollection property="playerButtons" destination="Myp-fx-T0B" collectionClass="NSMutableArray" id="Kyw-rh-kOr"/>
@@ -1269,8 +1286,8 @@
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
-                        <datePicker contentMode="scaleAspectFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="7eH-Vz-Tpj">
-                            <rect key="frame" x="61" y="169" width="324" height="104"/>
+                        <datePicker contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="7eH-Vz-Tpj">
+                            <rect key="frame" x="61" y="57" width="320" height="216"/>
                             <color key="tintColor" red="0.2278199914" green="0.48114453530000001" blue="0.37620398119999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </datePicker>
                         <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="egD-dE-VAO">
@@ -2116,7 +2133,7 @@
             </objects>
             <point key="canvasLocation" x="-362" y="234"/>
         </scene>
-        <!--Google Login View Controller-->
+        <!--Google-->
         <scene sceneID="F9D-QB-4bU">
             <objects>
                 <viewController id="3Je-eC-anZ" customClass="GoogleLoginViewController" customModule="DemoXIII" customModuleProvider="target" sceneMemberID="viewController">
@@ -2136,7 +2153,7 @@
                                     <segue destination="2di-hh-bPv" kind="show" identifier="loginToHomePageWithGoogle" id="PlW-Ax-KO7"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QMs-bw-9AW">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QMs-bw-9AW">
                                 <rect key="frame" x="132" y="373" width="150" height="150"/>
                                 <color key="backgroundColor" red="0.87450980392156863" green="0.28627450980392155" blue="0.19607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -2180,7 +2197,7 @@
                             <constraint firstItem="YCi-dQ-79h" firstAttribute="centerX" secondItem="0IF-fM-lnJ" secondAttribute="centerX" id="xBm-ev-LTX"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="N5N-9s-kcj"/>
+                    <navigationItem key="navigationItem" title="Google" id="N5N-9s-kcj"/>
                     <connections>
                         <outlet property="goToTheNextButton" destination="KXx-GY-0zz" id="Tzj-H7-sxT"/>
                     </connections>
@@ -2213,7 +2230,7 @@
             </objects>
             <point key="canvasLocation" x="-365" y="1690"/>
         </scene>
-        <!--Firebase Email Login View Controller-->
+        <!--Firebase-->
         <scene sceneID="7Nj-DD-8hR">
             <objects>
                 <viewController id="aKC-eS-mwo" customClass="FirebaseEmailLoginViewController" customModule="DemoXIII" customModuleProvider="target" sceneMemberID="viewController">
@@ -2241,7 +2258,7 @@
                                     <action selector="loginButtonTouchUp:" destination="aKC-eS-mwo" eventType="touchUpInside" id="DKh-dD-7Ma"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8xO-UU-zw3">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8xO-UU-zw3">
                                 <rect key="frame" x="132" y="373" width="150" height="150"/>
                                 <color key="backgroundColor" red="1" green="0.71175845338135257" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -2308,7 +2325,7 @@
                             <constraint firstItem="8xO-UU-zw3" firstAttribute="top" secondItem="GuL-Vm-2tu" secondAttribute="bottom" constant="30" id="yk0-0i-Ow9"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="dtK-QR-Ty8"/>
+                    <navigationItem key="navigationItem" title="Firebase" id="dtK-QR-Ty8"/>
                     <connections>
                         <outlet property="goToTheNextButton" destination="qhp-TP-GmH" id="akF-um-F5a"/>
                     </connections>
@@ -2336,10 +2353,42 @@
             </objects>
             <point key="canvasLocation" x="-362" y="947"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="xm2-GX-3vq">
+            <objects>
+                <viewController id="6uU-12-9AS" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="TBj-GZ-WJr">
+                        <rect key="frame" x="0.0" y="0.0" width="240" height="725"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="settings" translatesAutoresizingMaskIntoConstraints="NO" id="wUd-RE-lu1">
+                                <rect key="frame" x="16" y="135" width="72" height="63"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="star" translatesAutoresizingMaskIntoConstraints="NO" id="QQP-M7-bS5">
+                                <rect key="frame" x="16" y="214" width="72" height="63"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="HololiveBanner" translatesAutoresizingMaskIntoConstraints="NO" id="mQc-f9-huQ">
+                                <rect key="frame" x="25" y="44" width="199" height="83"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="amongUs-2" translatesAutoresizingMaskIntoConstraints="NO" id="tKp-QC-Csw">
+                                <rect key="frame" x="16" y="292" width="72" height="63"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="kKp-vX-jPa"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RkS-MM-pRq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2447.826086956522" y="2360.8258928571427"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="qpl-Aa-cC7"/>
-        <segue reference="L9w-YB-6na"/>
+        <segue reference="dSY-c8-vX8"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="0.square.fill" catalog="system" width="128" height="114"/>
@@ -2353,9 +2402,11 @@
         <image name="8.square.fill" catalog="system" width="128" height="114"/>
         <image name="9.square.fill" catalog="system" width="128" height="114"/>
         <image name="AmongUs" width="1024" height="576"/>
+        <image name="HololiveBanner" width="1600" height="453"/>
         <image name="Rushia" width="241" height="274"/>
         <image name="addPlus" width="512" height="512"/>
         <image name="airtable" width="42" height="31"/>
+        <image name="amongUs-2" width="696" height="442"/>
         <image name="arrow.uturn.down" catalog="system" width="128" height="118"/>
         <image name="categories" width="512" height="512"/>
         <image name="check" width="512" height="512"/>
@@ -2367,15 +2418,17 @@
         <image name="firebase" width="42" height="42"/>
         <image name="gobackward" catalog="system" width="121" height="128"/>
         <image name="google" width="32" height="32"/>
+        <image name="list.bullet" catalog="system" width="128" height="88"/>
         <image name="loginFacebook" width="965" height="172"/>
         <image name="loginGoogle" width="958" height="172"/>
         <image name="loss-1" width="512" height="512"/>
-        <image name="person.circle.fill" catalog="system" width="128" height="121"/>
         <image name="picture-1" width="511.00299072265625" height="511.00299072265625"/>
         <image name="plus.diamond.fill" catalog="system" width="128" height="122"/>
         <image name="profits-1" width="511.99899291992188" height="511.99899291992188"/>
         <image name="right-arrow" width="490.6669921875" height="490.6669921875"/>
         <image name="save" width="512" height="512"/>
+        <image name="settings" width="512" height="512"/>
+        <image name="star" width="512.02899169921875" height="512.02899169921875"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

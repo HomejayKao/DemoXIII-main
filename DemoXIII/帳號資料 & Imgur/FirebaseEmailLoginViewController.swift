@@ -46,6 +46,7 @@ class FirebaseEmailLoginViewController: UIViewController {
         
         //隱藏navigationBar
         self.navigationController?.navigationBar.isHidden = true
+        self.navigationController?.navigationBar.alpha = 0
         
         //更改tabBar的顏色
         self.tabBarController?.tabBar.barTintColor = UIColor(red: 251/255, green: 188/255, blue: 5/255, alpha: 1)
@@ -54,15 +55,13 @@ class FirebaseEmailLoginViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        self.tabBarController?.tabBar.isHidden = false //解除 tab bar 隱藏
+        //重新顯示 tabBar
+        UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 1, delay: 0, animations: {
+            self.tabBarController?.tabBar.isHidden = false
+            self.tabBarController?.tabBar.alpha = 1
+        }, completion: nil)
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        //重新顯示 navigationBar
-        self.navigationController?.navigationBar.isHidden = false
-        
-    }
 
     @IBAction func registerButtonTouchUp(_ sender: Any) {
         
@@ -105,8 +104,17 @@ class FirebaseEmailLoginViewController: UIViewController {
             guard let user = result?.user,
                   error == nil else {
                 print("註冊失敗",error?.localizedDescription)
+                
+                guard let errorString = error?.localizedDescription.description else { return }
+                
+                let alert = AlertController.shared.makeSingleAlert(title: "註冊失敗", message: errorString)
+                self.present(alert, animated: true, completion: nil)
+                
                 return
             }
+            
+            let alert = AlertController.shared.makeSingleAlert(title: "註冊成功", message: "請前往登入")
+            self.present(alert, animated: true, completion: nil)
             
             print("email",user.email)
             print("uid",user.uid)
@@ -148,11 +156,19 @@ class FirebaseEmailLoginViewController: UIViewController {
         Auth.auth().signIn(withEmail: email, password: password) { result, error in
             guard error == nil else {
                 print("登入失敗",error?.localizedDescription)
+                
+                guard let errorString = error?.localizedDescription.description else { return }
+                
+                let alert = AlertController.shared.makeSingleAlert(title: "登入失敗", message: errorString)
+                self.present(alert, animated: true, completion: nil)
                 return
             }
+            
+            print("登入成功")
+            self.performSegue(withIdentifier: "loginToHomePageWithFirebaseEmail", sender: self.goToTheNextButton)
+            
         }
-        print("登入成功")
-        performSegue(withIdentifier: "loginToHomePageWithFirebaseEmail", sender: goToTheNextButton)
+        
     }
     
     //設定使用者的名字跟照片網址

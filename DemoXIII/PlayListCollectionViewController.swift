@@ -58,13 +58,6 @@ class PlayListCollectionViewController: UICollectionViewController {
         
         videoWebView.backgroundColor = UIColor(red: 33, green: 33, blue: 33, alpha: 1)
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
-        //self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
-        // Do any additional setup after loading the view.
     }
     
     func setFlowLayout(itemSpace:CGFloat,columnCount:CGFloat) {
@@ -223,6 +216,8 @@ class PlayListCollectionViewController: UICollectionViewController {
     func embedVideo (videoID:String) {
         if let embedURL = URL(string: "https://www.youtube.com/embed/\(videoID)") {
             videoWebView.load(URLRequest(url: embedURL))
+            
+            print("embedURL",embedURL)
         }
     }
     

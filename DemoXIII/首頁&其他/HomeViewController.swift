@@ -14,6 +14,22 @@ import Lottie
 
 class HomeViewController: UIViewController {
     
+    @IBOutlet var containerView: UIView!
+    @IBOutlet var trailingConstraint: NSLayoutConstraint!
+    
+    var sideMenuIsOpening:Bool = false {
+        didSet {
+            switch sideMenuIsOpening {
+            case true:
+                trailingConstraint.constant = 0 // 向右移動 (-240 ——＞ 0)
+            default:
+                trailingConstraint.constant = -240
+            }
+            updateMenuViewShadow()
+        }
+    }
+    
+    
     @IBOutlet weak var circleAnimationView: AnimationView!
     
     @IBOutlet var playerButtons: [UIButton]!
@@ -67,10 +83,23 @@ class HomeViewController: UIViewController {
         
         //buttonsTouchUp(playerButtons[4])
         
-        self.tabBarController?.tabBar.isHidden = true//隱藏tab bar
+        
+        sideMenuIsOpening = false
+        
+        
         
         
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //隱藏 tabBar
+        self.tabBarController?.tabBar.isHidden = true
+        self.tabBarController?.tabBar.alpha = 0
+        //顯示 navigationBar
+        self.navigationController?.navigationBar.isHidden = false
+        self.navigationController?.navigationBar.alpha = 1
+    }
+    
     
     //Lottie動畫
     override func viewDidAppear(_ animated: Bool) {
@@ -80,6 +109,7 @@ class HomeViewController: UIViewController {
         view.sendSubviewToBack(circleAnimationView)
         circleAnimationView.loopMode = .loop
         circleAnimationView.play()
+        
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -416,6 +446,54 @@ class HomeViewController: UIViewController {
         homeCollectionView.setCollectionViewLayout(newLayout!, animated: true)
         
     }
+    
+    //MenuView 陰影
+    func updateMenuViewShadow() {
+        
+        switch sideMenuIsOpening {
+        case true:
+            containerView.layer.shadowOpacity = 1 //陰影不透明度
+            containerView.layer.shadowRadius = 6 //讓陰影更粗 更明顯
+        default:
+            containerView.layer.shadowOpacity = 0 //系統 預設為 0
+            containerView.layer.shadowRadius = 3 //系統 預設為 3
+        }
+        
+    }
+    
+    @IBAction func openSideMenu(_ sender: UIBarButtonItem) {
+        
+        sideMenuIsOpening.toggle()
+        
+        //添加動畫
+        UIView.animate(withDuration: 0.3) {
+            //要讓AutoLayout的Constraint變動時，有動畫呈現
+            self.view.layoutIfNeeded()
+        }
+        
+        //viewTransform()
+    }
+    
+    func viewTransform() {
+        
+        UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.3,
+                                                       delay: 0,
+                                                       options: .curveEaseIn,
+                                                       animations: {
+                                                        if self.sideMenuIsOpening == true {
+                                                            let transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+                                                            self.view.center.x = self.view.center.x - 100
+                                                            self.view.transform = transform
+                                                        }else{
+                                                            self.view.transform = .identity
+                                                            self.view.center.x = self.view.center.x + 100
+                                                        }
+                                                       }, completion: nil)
+
+    }
+    
+    
+    
     
     //內存警告
     override func didReceiveMemoryWarning() {
