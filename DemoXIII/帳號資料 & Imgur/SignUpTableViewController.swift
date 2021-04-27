@@ -91,6 +91,14 @@ class SignUpTableViewController: UITableViewController {
         self.tabBarController?.tabBar.isHidden = true
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        //顯示 navigationBar
+        self.navigationController?.navigationBar.isHidden = false
+        self.navigationController?.navigationBar.alpha = 1
+    }
+    
     //使tableView可以收鍵盤
     @IBAction func tableTap(_ sender: Any) {
         view.endEditing(true)

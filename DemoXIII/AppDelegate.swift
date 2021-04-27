@@ -61,6 +61,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         // Called when a new scene session is being created.
         // Use this method to select a configuration to create the new scene with.
+        //創建新的場景會話時調用。
+        //使用此方法選擇用於創建新場景的配置。
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
 
@@ -68,6 +70,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the user discards a scene session.
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
+        //當用戶放棄場景會話時調用。
+        //如果在應用程序未運行時丟棄了任何會話，則會在application：didFinishLaunchingWithOptions之後不久調用此方法。
+        //使用此方法釋放特定於被丟棄場景的任何資源，因為它們不會返回。
     }
     
     // MARK: - Core Data stack

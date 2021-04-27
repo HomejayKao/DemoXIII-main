@@ -990,7 +990,7 @@
                     <color key="backgroundColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </view>
             </objects>
-            <point key="canvasLocation" x="3164" y="1272"/>
+            <point key="canvasLocation" x="3155" y="1037"/>
         </scene>
         <!--首頁-->
         <scene sceneID="DOL-90-zLQ">
@@ -1071,13 +1071,13 @@
                                 <rect key="frame" x="10" y="438.5" width="394" height="30"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="min" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fKw-TR-sWw">
-                                        <rect key="frame" x="0.0" y="0.0" width="24" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="4" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="2lF-EA-TYB">
-                                        <rect key="frame" x="30" y="0.0" width="326" height="31"/>
+                                        <rect key="frame" x="10" y="0.0" width="346" height="31"/>
                                         <color key="tintColor" systemColor="systemRedColor"/>
                                         <connections>
                                             <action selector="sliderChange:" destination="2di-hh-bPv" eventType="valueChanged" id="iva-OT-RNt"/>
@@ -2386,7 +2386,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="dSY-c8-vX8"/>
+        <segue reference="qpl-Aa-cC7"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="0.square.fill" catalog="system" width="128" height="114"/>

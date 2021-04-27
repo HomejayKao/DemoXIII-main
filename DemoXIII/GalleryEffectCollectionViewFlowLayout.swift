@@ -128,3 +128,4 @@ class GalleryEffectCollectionViewFlowLayout: UICollectionViewFlowLayout {
     }
 
 }
+

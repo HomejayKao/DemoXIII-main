@@ -114,6 +114,8 @@ class DetailCollectionViewController: UICollectionViewController {
         
     }
     
+    
+    
     //變更標籤內容
     func changeSelectedItemInfo (imageName:String,title:String) {
         
@@ -723,3 +725,4 @@ class DetailCollectionViewController: UICollectionViewController {
         print("DetailCollectionViewController＿＿＿＿＿死亡")
     }
 }
+
