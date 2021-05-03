@@ -28,6 +28,7 @@ class DetailCollectionViewController: UICollectionViewController {
     @IBOutlet weak var priceTextField: UITextField!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var addButton: UIButton!
+    @IBOutlet var showButton: UIButton!
     
     var incomeImageNameArray = [String]()
     var incomeLabelTitleArray = [String]()
@@ -101,7 +102,7 @@ class DetailCollectionViewController: UICollectionViewController {
         flowLayout?.itemSize = CGSize(width: cellWidth, height: cellWidth)
         
         //將 Min Spacing For Cells & Min Spacing For Lines 都設為 itemSpace。
-        flowLayout?.estimatedItemSize = .zero
+        flowLayout?.estimatedItemSize = .zero // cell 的尺寸才會依據 itemSize，否則它將從 auto layout 的條件計算 cell 的尺寸
         flowLayout?.minimumInteritemSpacing = itemSpace
         flowLayout?.minimumLineSpacing = itemSpace
         
@@ -522,12 +523,23 @@ class DetailCollectionViewController: UICollectionViewController {
         
         let cancelAction = UIAlertAction(title: "取消", style: .cancel) { alertAction in
             
-            /*
+            
+            
+            
             let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
             guard let resultTableVC = storyboard.instantiateViewController(identifier: "ResultTableViewController") as? ResultTableViewController else { return }
             
+            resultTableVC.incomeArray = self.incomeArray
+            resultTableVC.expenseArray = self.expenseArray
+            resultTableVC.incomeExpenseArray = self.incomeExpenseArray
+            resultTableVC.dateIncomeExpenseArray = self.dateIncomeExpenseArray
+            
+            resultTableVC.incomeListArray = self.incomeListArray
+            resultTableVC.expenseListArray = self.expenseListArray
+            
             self.navigationController?.pushViewController(resultTableVC, animated: true)
-            */
+            
+            
         }
         
         yesNoAlert.addAction(cancelAction)

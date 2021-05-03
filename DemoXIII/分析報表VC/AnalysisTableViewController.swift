@@ -268,8 +268,9 @@ class AnalysisTableViewController: UITableViewController {
         }
         
         DispatchQueue.main.async {
-            self.tableView.reloadData()
             self.updatePieChartView(self.newListArray)
+            self.adjustAttributesOfCashSurplusLabel()
+            self.tableView.reloadData()
         }
     }
     
@@ -323,8 +324,22 @@ class AnalysisTableViewController: UITableViewController {
             textField.text = self.endDateString
         }
         
-        
         let okAction = UIAlertAction(title: "ok", style: .default) { [self] (action) in
+            
+            guard alert.textFields?[0].text != "" else {
+                
+                let alert = AlertController.shared.makeSingleAlert(title: "錯誤：請重新嘗試", message: "欄位：起始日期，不可空白")
+                present(alert, animated: true, completion: nil)
+                return
+            }
+            
+            guard alert.textFields?[1].text != "" else {
+                
+                let alert = AlertController.shared.makeSingleAlert(title: "錯誤：請重新嘗試", message: "欄位：結束日期，不可空白")
+                present(alert, animated: true, completion: nil)
+                return
+            }
+            
             if endDate >= starDate{
                 
                 let dateStart = starDate as NSDate
@@ -348,6 +363,12 @@ class AnalysisTableViewController: UITableViewController {
                 let start = makeDateString(date: starDate, dateFormat: "yyyy年MM月dd日")
                 let end = makeDateString(date: endDate, dateFormat: "yyyy年MM月dd日")
                 dateLabel.text = "\(start)~\(end)"
+                
+                DispatchQueue.main.async {
+                    self.updatePieChartView(self.newListArray)
+                    self.adjustAttributesOfCashSurplusLabel()
+                    self.tableView.reloadData()
+                }
                 
                 
             }else{

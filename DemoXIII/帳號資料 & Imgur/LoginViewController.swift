@@ -19,17 +19,6 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        NetworkController.shared.fetchAirtableAPI(urlString: getUrl) { (result) in
-            switch result {
-            
-            case let .success(infoResponse):
-                self.recordArray = infoResponse.records
-                print("fetchAirtableAPI 成功")
-            case let .failure(error):
-                print("fetchAirtableAPI 失敗\(error)")
-            }
-        }
         
         accountTextField.delegate = self
         passwordTextField.delegate = self
@@ -41,7 +30,8 @@ class LoginViewController: UIViewController {
         
         //插入漸層圖
         view.insertSubview(makeGradientView(), at: 0)
-
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -64,39 +54,55 @@ class LoginViewController: UIViewController {
             self.tabBarController?.tabBar.alpha = 1
         }, completion: nil)
         
+        
+        NetworkController.shared.fetchAirtableAPI(urlString: getUrl) { (result) in
+            switch result {
+            
+            case let .success(infoResponse):
+                self.recordArray = infoResponse.records
+                print("fetchAirtableAPI 成功")
+            case let .failure(error):
+                print("fetchAirtableAPI 失敗\(error)")
+            }
+        }
+        
     }
     
     //Airtable login
     @IBAction func login(_ sender: Any) {
-        if let accountText = accountTextField.text,
-           let passwordText = passwordTextField.text {
-
-            for index in recordArray {
+        
+        guard accountTextField.text != "" else {
+            let alert = AlertController.shared.makeSingleAlert(title: "錯誤", message: "帳號不可空白")
+            present(alert, animated: true, completion: nil)
+            return
+        }
+        
+        guard passwordTextField.text != "" else {
+            let alert = AlertController.shared.makeSingleAlert(title: "錯誤", message: "密碼不可空白")
+            present(alert, animated: true, completion: nil)
+            return
+        }
+        
+        var isSuccess = false
+        
+        for record in recordArray {
+            if let account = record.fields.Account,
+               let password = record.fields.Password {
                 
-                
-                if let account = index.fields.Account,
-                   let password = index.fields.Password {
-
-                    switch (accountText == account && passwordText == password) {
-                    case (true && true):
-                        
-                        performSegue(withIdentifier: "loginToHomePage", sender: sender)
-                    default:
-                        makeAlert(title: "帳號密碼錯誤", message: "請重新輸入")
-                        
-                    }
+                if accountTextField.text == account , passwordTextField.text == password {
+                    
+                    isSuccess = true
+                    performSegue(withIdentifier: "loginToHomePage", sender: sender)
+                    
                 }
             }
         }
-    }
-    
-    //錯誤通知
-    func makeAlert(title:String ,message:String) {
-        let singleAlert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
-        singleAlert.addAction(UIAlertAction(title: "ok", style: .default, handler: nil))
+        if isSuccess == false {
+            let alert = AlertController.shared.makeSingleAlert(title: "登入失敗", message: "請重新嘗試")
+            present(alert, animated: true, completion: nil)
+        }
         
-        present(singleAlert, animated: true, completion: nil)
     }
     
     func makeGradientView() -> UIView {
@@ -141,5 +147,6 @@ extension LoginViewController:UITextFieldDelegate {
         return true
     }
 }
+
 
 
