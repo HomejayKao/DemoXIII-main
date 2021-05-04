@@ -135,7 +135,7 @@ class EditCollectionViewController: UICollectionViewController {
             switch segmentedValue {
             case 0:
                 let bool =  incomeListArray.allSatisfy { (incomeList) -> Bool in
-                    return incomeList.imageName != list.imageName || incomeList.title != list.title
+                    return incomeList.imageName != list.imageName && incomeList.title != list.title
                 }
                 
                 if bool == false {
@@ -147,7 +147,7 @@ class EditCollectionViewController: UICollectionViewController {
                 
             default:
                 let bool = expenseListArray.allSatisfy { (expenseList) -> Bool in
-                    return expenseList.imageName != list.imageName || expenseList.title != list.title
+                    return expenseList.imageName != list.imageName && expenseList.title != list.title
                 }
                 
                 if bool == false {

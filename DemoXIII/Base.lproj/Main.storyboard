@@ -1072,17 +1072,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SzF-de-k48" customClass="AnimationView" customModule="Lottie">
-                                <rect key="frame" x="132" y="607.5" width="150" height="150"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="UXj-QI-4l4"/>
-                                    <constraint firstAttribute="height" constant="150" id="wzk-hA-4Ta"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="circle"/>
-                                </userDefinedRuntimeAttributes>
-                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="do7-3E-5v0">
                                 <rect key="frame" x="177" y="652" width="60" height="61.5"/>
                                 <constraints>
@@ -1236,9 +1225,7 @@
                             <constraint firstItem="do7-3E-5v0" firstAttribute="centerX" secondItem="d6h-Qe-rYU" secondAttribute="centerX" id="8ED-Pc-iNU"/>
                             <constraint firstItem="lMC-YP-Y62" firstAttribute="centerX" secondItem="d6h-Qe-rYU" secondAttribute="centerX" id="Hxt-rR-5zt"/>
                             <constraint firstItem="c4V-jk-vrr" firstAttribute="bottom" secondItem="do7-3E-5v0" secondAttribute="bottom" constant="100.5" id="IIp-lB-3AI"/>
-                            <constraint firstItem="SzF-de-k48" firstAttribute="centerX" secondItem="d6h-Qe-rYU" secondAttribute="centerX" id="JJe-Yd-Elv"/>
                             <constraint firstItem="AQw-yB-kne" firstAttribute="leading" secondItem="c4V-jk-vrr" secondAttribute="leading" constant="10" id="T8d-fV-YSv"/>
-                            <constraint firstItem="SzF-de-k48" firstAttribute="centerY" secondItem="do7-3E-5v0" secondAttribute="centerY" id="Xtr-mq-tuz"/>
                             <constraint firstItem="c4V-jk-vrr" firstAttribute="trailing" secondItem="AQw-yB-kne" secondAttribute="trailing" constant="10" id="c0j-Eh-cqW"/>
                             <constraint firstItem="lMC-YP-Y62" firstAttribute="top" secondItem="AQw-yB-kne" secondAttribute="bottom" constant="20" id="dRT-Ne-qYr"/>
                             <constraint firstItem="isy-qa-DrS" firstAttribute="bottom" secondItem="c4V-jk-vrr" secondAttribute="bottom" id="gos-DT-2va"/>
@@ -1256,12 +1243,12 @@
                     </navigationItem>
                     <connections>
                         <outlet property="amongUsImageView" destination="5Sk-Fo-kJd" id="b9m-Ab-9Jb"/>
-                        <outlet property="circleAnimationView" destination="SzF-de-k48" id="bpU-YC-Ogd"/>
                         <outlet property="containerView" destination="isy-qa-DrS" id="QvQ-8d-du1"/>
                         <outlet property="homeCollectionView" destination="5Sk-Fo-kJd" id="CAN-tm-WRX"/>
                         <outlet property="maxLabel" destination="mxc-Yf-VtC" id="8QA-y3-D62"/>
                         <outlet property="minLabel" destination="fKw-TR-sWw" id="nMd-uH-pGs"/>
                         <outlet property="playerSlider" destination="2lF-EA-TYB" id="myQ-Hy-7mg"/>
+                        <outlet property="plusButton" destination="do7-3E-5v0" id="Plw-Hu-gLT"/>
                         <outlet property="trailingConstraint" destination="uJ7-QT-dW0" id="91y-xE-STG"/>
                         <outletCollection property="playerButtons" destination="kXQ-MD-96K" collectionClass="NSMutableArray" id="Wvp-PY-PGm"/>
                         <outletCollection property="playerButtons" destination="DXc-ZU-hmw" collectionClass="NSMutableArray" id="bEb-46-Ezr"/>
@@ -2458,9 +2445,6 @@
             <point key="canvasLocation" x="2447.826086956522" y="2360.8258928571427"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="SzF-de-k48"/>
-    </designables>
     <inferredMetricsTieBreakers>
         <segue reference="dSY-c8-vX8"/>
     </inferredMetricsTieBreakers>

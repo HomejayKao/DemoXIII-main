@@ -30,7 +30,9 @@ class HomeViewController: UIViewController {
     }
     
     
-    @IBOutlet weak var circleAnimationView: AnimationView!
+    //@IBOutlet weak var circleAnimationView: AnimationView! //用outlet的方式會出現紅色錯誤，但仍能使用
+    var circleAnimationView:AnimationView!
+    @IBOutlet var plusButton: UIButton!
     
     @IBOutlet var playerButtons: [UIButton]!
     @IBOutlet weak var playerSlider: UISlider!
@@ -86,7 +88,7 @@ class HomeViewController: UIViewController {
         
         sideMenuIsOpening = false
         
-        
+        makeCircleAnimationView()
         
         
     }
@@ -105,8 +107,6 @@ class HomeViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        //放到最下層
-        view.sendSubviewToBack(circleAnimationView)
         circleAnimationView.loopMode = .loop
         circleAnimationView.play()
         
@@ -114,6 +114,19 @@ class HomeViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         circleAnimationView.pause()
+    }
+    
+    func makeCircleAnimationView() {
+        circleAnimationView = AnimationView(name: "circle")
+        view.addSubview(circleAnimationView) //要先添加進去才能調整AutoLayout
+        view.sendSubviewToBack(circleAnimationView) //放到最下層
+        
+        circleAnimationView.translatesAutoresizingMaskIntoConstraints = false
+        circleAnimationView.centerYAnchor.constraint(equalTo: plusButton.centerYAnchor).isActive = true
+        circleAnimationView.centerXAnchor.constraint(equalTo: plusButton.centerXAnchor).isActive = true
+        circleAnimationView.heightAnchor.constraint(equalToConstant: 150).isActive = true
+        circleAnimationView.widthAnchor.constraint(equalToConstant: 150).isActive = true
+        
     }
     
     func playVideo() {
