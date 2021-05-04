@@ -135,12 +135,12 @@ extension GoogleLoginViewController:GIDSignInDelegate {
         let familyName = user.profile.familyName
         let email = user.profile.email //如果將GIDSignIn.shouldFetchBasicProfile屬性設置為NO ，則GIDGoogleUser.profile.email字段將不可用。
         
-        print(userId)
-        print(idToken)
-        print(fullName)
-        print(givenName)
-        print(familyName)
-        print(email)
+        print(userId!)
+        print(idToken!)
+        print(fullName!)
+        print(givenName!)
+        print(familyName!)
+        print(email!)
         
         //Firebase登入
         guard let authentication = user.authentication else { return }
@@ -153,7 +153,7 @@ extension GoogleLoginViewController:GIDSignInDelegate {
                 print("self = nil")
                 return }
             guard error == nil else {
-                print("FirebaseSignIn失敗",error?.localizedDescription)
+                print("FirebaseSignIn失敗",error!.localizedDescription)
                 return
             }
             print("FirebaseSingIn成功")
@@ -176,9 +176,9 @@ extension GoogleLoginViewController:GIDSignInDelegate {
                 if user.providerData.count > 0 {
                     
                     print(user.providerData[0].providerID)
-                    print(user.providerData[0].displayName)
-                    print(user.providerData[0].email)
-                    print(user.providerData[0].photoURL)
+                    print(user.providerData[0].displayName!)
+                    print(user.providerData[0].email!)
+                    print(user.providerData[0].photoURL!)
                     
                 }
             } else {

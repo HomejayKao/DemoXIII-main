@@ -103,7 +103,7 @@ class FirebaseEmailLoginViewController: UIViewController {
             
             guard let user = result?.user,
                   error == nil else {
-                print("註冊失敗",error?.localizedDescription)
+                print("註冊失敗",error!.localizedDescription)
                 
                 guard let errorString = error?.localizedDescription.description else { return }
                 
@@ -116,7 +116,7 @@ class FirebaseEmailLoginViewController: UIViewController {
             let alert = AlertController.shared.makeSingleAlert(title: "註冊成功", message: "請前往登入")
             self.present(alert, animated: true, completion: nil)
             
-            print("email",user.email)
+            print("email",user.email!)
             print("uid",user.uid)
         }
     }
@@ -155,7 +155,7 @@ class FirebaseEmailLoginViewController: UIViewController {
     func signInAccount(_ email:String ,_ password:String) {
         Auth.auth().signIn(withEmail: email, password: password) { result, error in
             guard error == nil else {
-                print("登入失敗",error?.localizedDescription)
+                print("登入失敗",error!.localizedDescription)
                 
                 guard let errorString = error?.localizedDescription.description else { return }
                 
@@ -178,7 +178,7 @@ class FirebaseEmailLoginViewController: UIViewController {
         changeRequest?.displayName = "使用者名字"
         changeRequest?.commitChanges(completion: { error in
             guard error == nil else {
-                print("設定失敗",error?.localizedDescription)
+                print("設定失敗",error!.localizedDescription)
                 return
             }
         })

@@ -67,10 +67,10 @@ class FacebookLoginViewController: UIViewController {
                     Profile.loadCurrentProfile { (profile, error) in
                         if let profile = profile {
                             
-                            print("profile.name",profile.name)
-                            print("profile.email",profile.email)
+                            print("profile.name",profile.name!)
+                            print("profile.email",profile.email!)
                             print("profile.imageURL",profile.imageURL(forMode: .square,
-                                                                    size: CGSize(width: 300, height: 300)))
+                                                                      size: CGSize(width: 300, height: 300))!)
                             
                             
                             self.loginButton(self.fbLoginButton, didCompleteWith: .none, error: .none)
@@ -154,7 +154,7 @@ extension FacebookLoginViewController:LoginButtonDelegate {
                 print("self = nil")
                 return }
             guard error == nil else {
-                print("FirebaseSignIn失敗",error?.localizedDescription)
+                print("FirebaseSignIn失敗",error!.localizedDescription)
                 return
             }
             print("FirebaseSingIn成功")
