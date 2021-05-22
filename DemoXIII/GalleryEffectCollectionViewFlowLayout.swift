@@ -47,7 +47,11 @@ class GalleryEffectCollectionViewFlowLayout: UICollectionViewFlowLayout {
     override func layoutAttributesForElements(in rect: CGRect)
         -> [UICollectionViewLayoutAttributes]? {
         //從父類別得到默認的所有 預設屬性
-        let array = super.layoutAttributesForElements(in: rect) //會回傳 layout屬性設置每個cell 的陣列
+        
+        guard let superArray = super.layoutAttributesForElements(in: rect) else { return nil} //會回傳 layout屬性設置每個cell 的陣列
+        
+        //複製原本的superArray，不改動super內的配置為原則
+        guard let copyArray = NSArray(array: superArray, copyItems: true) as? [UICollectionViewLayoutAttributes] else { return nil}
         
         //可見區域的大小（目前顯示出来的位置，位於collectionView上的矩形區域）
         let visiableRect = CGRect(x: self.collectionView!.contentOffset.x,
@@ -63,7 +67,7 @@ class GalleryEffectCollectionViewFlowLayout: UICollectionViewFlowLayout {
         let maxDeviation = self.collectionView!.bounds.width / 2 //+ itemWidth / 2 螢幕的一半寬其實就夠了
         
         //設定每個Cell的縮放
-        for attributes in array! {
+        for attributes in copyArray {
             //判斷與可見區域是否相交，intersects判斷兩個矩形是否相交，true
             if visiableRect.intersects(attributes.frame) {
             
@@ -75,7 +79,7 @@ class GalleryEffectCollectionViewFlowLayout: UICollectionViewFlowLayout {
             }
         }
         
-        return array
+        return copyArray
     }
     
     //設定滾動後的位置————————————————————————————————————————————————————————————————————————————————————————

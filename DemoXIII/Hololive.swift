@@ -61,7 +61,7 @@ struct Hololive {
     }
     
     static func returnThirdImageNameArray() -> [String] {
-        let imageNames = ["Marine",
+        let imageNames = [//"Marine",
                           "Rushia",
                           "Pekora",
                           "Noel",
@@ -70,7 +70,7 @@ struct Hololive {
     }
     
     static func returnThirdChannel_ID() -> [String] {
-        let imageNames = ["UCCzUftO8KOVkV4wQG1vkUvg",
+        let imageNames = [//"UCCzUftO8KOVkV4wQG1vkUvg",
                           "UCl_gCybOJRIgOXw6Qb4qJzQ",
                           "UC1DCedRgGHBdm81E1llLhOQ",
                           "UCdyqAaZDKHXg4Ahi7VENThQ",
@@ -79,7 +79,7 @@ struct Hololive {
     }
     
     static func returnThirdPlaylist_ID() -> [String] {
-        let imageNames = ["UUCzUftO8KOVkV4wQG1vkUvg",
+        let imageNames = [//"UUCzUftO8KOVkV4wQG1vkUvg",
                           "UUl_gCybOJRIgOXw6Qb4qJzQ",
                           "UU1DCedRgGHBdm81E1llLhOQ",
                           "UUdyqAaZDKHXg4Ahi7VENThQ",
@@ -88,7 +88,7 @@ struct Hololive {
     }
     
     static func returnThirdTwitterName() -> [String] {
-        let imageNames = ["houshoumarine",
+        let imageNames = [//"houshoumarine",
                           "uruharushia",
                           "usadapekora",
                           "shiroganenoel",

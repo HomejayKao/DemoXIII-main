@@ -41,7 +41,10 @@ class HomeViewController: UIViewController {
     var playerLoop:AVPlayerLooper?
     var playerItem:AVPlayerItem?
     var queuePlayer = AVQueuePlayer()
-    let playerItemUrl = ["MarineBGM","RushiaBGM","PekoraBGM","NoelBGM"]
+    let playerItemUrl = [//"MarineBGM",
+                         "RushiaBGM",
+                         "PekoraBGM",
+                         "NoelBGM"]
     var notification:Any?
     var number = 0
     

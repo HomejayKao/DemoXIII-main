@@ -4,6 +4,11 @@
 //
 //  Created by homejay on 2021/2/15.
 //
+//以下幾種都是網路抓資料常見的檔名結尾。
+//Controller
+//Service
+//Client
+//Manager
 
 import Foundation
 import UIKit
@@ -218,11 +223,15 @@ class NetworkController {
         let headers: HTTPHeaders = [
             "Authorization": "Client-ID 74b671d9170a14e",
         ]
+        
+//        AF.upload(multipartFormData: <#T##(MultipartFormData) -> Void#>, to: <#T##URLConvertible#>, usingThreshold: <#T##UInt64#>, method: <#T##HTTPMethod#>, headers: <#T##HTTPHeaders?#>, interceptor: <#T##RequestInterceptor?#>, fileManager: <#T##FileManager#>, requestModifier: <#T##Session.RequestModifier?##Session.RequestModifier?##(inout URLRequest) throws -> Void#>
+        
         AF.upload(multipartFormData: { (data) in
             let imageData = uiImage.jpegData(compressionQuality: 0.9)
             data.append(imageData!, withName: "image")
             
         }, to: "https://api.imgur.com/3/image", headers: headers).responseDecodable(of: UploadImgur.self, queue: .main, decoder: JSONDecoder()) { (response) in
+            
             switch response.result {
             case .success(let result):
                 print(result.data.link)

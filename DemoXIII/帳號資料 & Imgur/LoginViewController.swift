@@ -31,6 +31,11 @@ class LoginViewController: UIViewController {
         //插入漸層圖
         view.insertSubview(makeGradientView(), at: 0)
         
+        accountTextField.placeholder = "homejay1228"
+        passwordTextField.placeholder = "home"
+        
+        accountTextField.text = "homejay1228"
+        passwordTextField.text = "home"
         
     }
     
@@ -71,6 +76,7 @@ class LoginViewController: UIViewController {
     //Airtable login
     @IBAction func login(_ sender: Any) {
         
+        
         guard accountTextField.text != "" else {
             let alert = AlertController.shared.makeSingleAlert(title: "錯誤", message: "帳號不可空白")
             present(alert, animated: true, completion: nil)
@@ -103,6 +109,7 @@ class LoginViewController: UIViewController {
             present(alert, animated: true, completion: nil)
         }
         
+        self.view.endEditing(true)
     }
     
     func makeGradientView() -> UIView {

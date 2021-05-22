@@ -75,6 +75,8 @@ class SignUpTableViewController: UITableViewController {
     
     var selectedImage:UIImage?
     
+    let getUrl = "https://api.airtable.com/v0/appUFA1vsu2dfoYsc/%E5%AE%A2%E6%88%B6%E8%B3%87%E6%96%99%E8%A1%A8/"
+    var recordArray = [InfoResponse.Records]()
     
 
     override func viewDidLoad() {
@@ -97,6 +99,17 @@ class SignUpTableViewController: UITableViewController {
         //顯示 navigationBar
         self.navigationController?.navigationBar.isHidden = false
         self.navigationController?.navigationBar.alpha = 1
+        
+        NetworkController.shared.fetchAirtableAPI(urlString: getUrl) { (result) in
+            switch result {
+            
+            case let .success(infoResponse):
+                self.recordArray = infoResponse.records
+                print("fetchAirtableAPI 成功")
+            case let .failure(error):
+                print("fetchAirtableAPI 失敗\(error)")
+            }
+        }
     }
     
     //使tableView可以收鍵盤
@@ -165,6 +178,23 @@ class SignUpTableViewController: UITableViewController {
         default:
             gender = false
         }
+        
+        var isRepeat = false
+        for record in recordArray {
+            if let account = record.fields.Account {
+                
+                if accountTextField.text == account {
+                    isRepeat = true
+                }
+            }
+        }
+        
+        guard isRepeat != true else {
+            let alert = AlertController.shared.makeSingleAlert(title: "帳號已被使用", message: "請重新輸入帳號")
+            present(alert, animated: true, completion: nil)
+            return
+        }
+        
         
         
         if let image = selectedImage {

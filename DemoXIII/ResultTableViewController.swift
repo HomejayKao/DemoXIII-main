@@ -17,6 +17,7 @@ protocol ResultTableViewControllerDelegate: AnyObject { //寫一個protocol dele
 
 class ResultTableViewController: UITableViewController {
     
+    //符合ResultTableViewControllerDelegate的對象，也可以很多個對象，如Array [ResultTableViewControllerDelegate]
     weak var delegate: ResultTableViewControllerDelegate? //設一個變數 遵從 protocol的delegate代理人，現在還不知道是誰，誰遵從，誰就能成為代理人
     
     @IBOutlet weak var incomeTotalLabel: UILabel!

@@ -127,10 +127,12 @@ class FirebaseEmailLoginViewController: UIViewController {
         let alert = UIAlertController(title: "登入", message: "信箱＆密碼", preferredStyle: .alert)
         
         alert.addTextField { textField in
-            textField.placeholder = "已註冊之信箱"
+            textField.text = "homejay1228@gmail.com"
+            textField.placeholder = "homejay1228@gmail.com"
         }
         alert.addTextField { textField in
-            textField.placeholder = "已註冊之密碼"
+            textField.text = "homejay1228"
+            textField.placeholder = "homejay1228"
             textField.isSecureTextEntry = true
             textField.textContentType = .password
         }
