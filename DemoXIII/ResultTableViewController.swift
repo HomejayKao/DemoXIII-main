@@ -275,7 +275,7 @@ class ResultTableViewController: UITableViewController {
         guard let header = view as? UITableViewHeaderFooterView else { return }
         header.textLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         header.textLabel?.textAlignment = .center
-        header.textLabel?.textColor = UIColor.black
+        header.textLabel?.textColor = UIColor(red: 103/255, green: 171/255, blue: 215/255, alpha: 1)
         print("section---------------------",section)
     }
     
@@ -291,6 +291,8 @@ class ResultTableViewController: UITableViewController {
         
         return fetchedResultsController?.sections?[section].name
     }
+    
+    
     
     /*
     //傳資料到下一頁 ReportTableViewController

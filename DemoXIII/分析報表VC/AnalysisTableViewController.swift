@@ -308,8 +308,6 @@ class AnalysisTableViewController: UITableViewController {
     }
     
     func makeDateToDateAlert() {
-        
-        startDatePicker.backgroundColor = .white
 
         alert = UIAlertController(title: "自訂區間", message: "請選擇日期", preferredStyle: .alert)
         alert.addTextField { (textField) in

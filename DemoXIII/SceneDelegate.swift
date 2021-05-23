@@ -37,9 +37,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         //更改所有navigationBar的屬性
         let navigationBarAppearace = UINavigationBar.appearance()
-        navigationBarAppearace.tintColor = UIColor.black
-        navigationBarAppearace.barTintColor = UIColor.white
-        navigationBarAppearace.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.black]
+        navigationBarAppearace.tintColor = UIColor(red: 0, green: 150/255, blue: 136/255, alpha: 1)
+        //navigationBarAppearace.barTintColor = UIColor.white
+        //navigationBarAppearace.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.black]
         
         
         

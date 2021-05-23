@@ -172,7 +172,7 @@ class HomeViewController: UIViewController {
                 self.playerLoop = AVPlayerLooper(player: self.queuePlayer, templateItem: self.playerItem!)
             case "🔁": //結束就換下一首，循環輪播
                 self.playerLoop?.disableLooping()
-                if self.number < 3 {
+                if self.number < 2 {
                     self.number += 1
                 }else{
                     self.number = 0
@@ -272,7 +272,8 @@ class HomeViewController: UIViewController {
         switch sender {
         case playerButtons[0]: //隨機播放
             
-            number = Int.random(in: 0...3)
+            //number = Int.random(in: 0...3)
+            number = Int.random(in: 0...2)
             
             switchSong(arrayNumber: number)
             
@@ -281,7 +282,8 @@ class HomeViewController: UIViewController {
             if number > 0 {
                 number -= 1
             }else{
-                number = 3
+                //number = 3
+                number = 2
             }
             
             switchSong(arrayNumber: number)
@@ -292,7 +294,13 @@ class HomeViewController: UIViewController {
             
         case playerButtons[3]://下一首
             
-            if number < 3 {
+//            if number < 3 {
+//                number += 1
+//            }else{
+//                number = 0
+//            }
+            
+            if number < 2 {
                 number += 1
             }else{
                 number = 0
