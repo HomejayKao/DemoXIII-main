@@ -76,6 +76,7 @@ class EditCollectionViewController: UICollectionViewController {
         guard let reusableView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "EditCollectionReusableView", for: indexPath) as? EditCollectionReusableView else { return UICollectionReusableView()}
         
         reusableView.editTextField.text = itemNameContent
+        reusableView.editTextField.delegate = self
         
         return reusableView
     }
@@ -161,6 +162,10 @@ class EditCollectionViewController: UICollectionViewController {
         }
     }
     
+    //收鍵盤(點螢幕空白處)
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
 
     /*
     // MARK: - Navigation
@@ -247,3 +252,11 @@ class EditCollectionViewController: UICollectionViewController {
         print("EditCollectionViewController＿＿＿＿＿死亡")
     }
 }
+
+//收鍵盤(點return)
+extension EditCollectionViewController:UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.endEditing(true)
+    }
+}
+
