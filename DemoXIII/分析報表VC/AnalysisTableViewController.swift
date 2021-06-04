@@ -219,7 +219,7 @@ class AnalysisTableViewController: UITableViewController {
                 newListArray = caculateSameTitleMoney(incomeListArray)
             default:// 篩選 支出
                 let predicate = NSPredicate(format: "year == %i AND month <= %i AND money < %i",
-                                            currentYear,monthOfSixMonthAgo,0)
+                                            currentYear,currentMonth,0)
                 
                 //如果橫跨年度
                 if currentYear - yearOfSixMonthAgo == 1 {
