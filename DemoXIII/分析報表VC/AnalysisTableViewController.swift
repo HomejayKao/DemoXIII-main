@@ -184,7 +184,7 @@ class AnalysisTableViewController: UITableViewController {
             
             let timeStampSec = beginningOfMonth.timeIntervalSince1970 //該日期的時間秒數
             
-            let fiveMonthsSec = TimeInterval(13149000) //五個月的總秒數
+            let fiveMonthsSec = TimeInterval(13149000) //13149000五個月的總秒數
             
             let sixMonthAgoDate = Date(timeIntervalSince1970: timeStampSec - fiveMonthsSec) //得到五個月前的日期
             
@@ -197,11 +197,12 @@ class AnalysisTableViewController: UITableViewController {
             let monthOfSixMonthAgo = Int64(sixMonthAgoMonth)
             
             let currentYear = Int64(year)
+            let currentMonth = Int64(month)
             
             switch incomeExpenseSegmentedControl.selectedSegmentIndex {
             case 0: //篩選 收入
                 let predicate = NSPredicate(format: "year == %i AND month <= %i AND money >= %i",
-                                            currentYear,monthOfSixMonthAgo,0)
+                                            currentYear,currentMonth,0)
                 
                 //如果橫跨年度
                 if currentYear - yearOfSixMonthAgo == 1 {

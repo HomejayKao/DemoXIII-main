@@ -14,7 +14,8 @@ import Foundation
 import UIKit
 import Alamofire //第三方套件
 
-class NetworkController {
+//可以寫成struct，就不用deinit
+struct NetworkController {
     static let shared = NetworkController()
     
     let imageCache = NSCache<NSURL,UIImage>()
@@ -245,9 +246,9 @@ class NetworkController {
         }
     }
     
-    deinit {
-        print("NetworkController物件＿＿＿＿＿＿＿＿＿＿＿死亡")
-    }
+//    deinit {
+//        print("NetworkController物件＿＿＿＿＿＿＿＿＿＿＿死亡")
+//    }
     
     
    
